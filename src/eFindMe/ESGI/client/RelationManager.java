@@ -1,4 +1,4 @@
-package eFindMe.fr.client;
+package eFindMe.ESGI.client;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,9 +22,9 @@ public class RelationManager extends JFrame implements ActionListener{
 	private Customer client;
 	
 	
-	public RelationManager() {
+	public RelationManager(Customer c) {
 		
-		client = new Customer();
+		client = c;
 		
 		setPreferredSize(new Dimension(1280, 760));
 		
@@ -47,6 +47,8 @@ public class RelationManager extends JFrame implements ActionListener{
 		JPanel centerPanel = new JPanel();
 		centerPanel.setBorder(BorderFactory.createTitledBorder("Relations de " + client.getSociety()));
 		centerPanel.setPreferredSize(new Dimension(400,400));
+		centerPanel.setLayout(new BorderLayout());
+		centerPanel.add(new ClientRelationGraph(client, centerPanel),BorderLayout.CENTER);
 		getContentPane().add(centerPanel,BorderLayout.CENTER);
 		
 		JMenuBar menuBar = new JMenuBar();

@@ -1,10 +1,12 @@
-package eFindMe.fr.client;
+package eFindMe.ESGI.client;
 
 public class Application {
 	
 	
 	public static void main(String[] args) {
-		RelationManager rmWindow = new RelationManager();
+		
+		Customer c = new Customer("CAMBRAY", "Jérôme","jeromeCambray","jerome Cambray","MicrosoftNegger","12374648373637");
+		RelationManager rmWindow = new RelationManager(c);
 		
 	}
 

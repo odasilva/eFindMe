@@ -1,10 +1,10 @@
-package eFindMe.fr.client;
+package eFindMe.ESGI.client;
 
 public class Customer {
 	
 	private String name,surname,facebook,LinkedIn,society,siret;
 	
-	public void Customer(String customerName,String customerSurname,String FB, String LK,String societyName, String sirett)
+	public  Customer(String customerName,String customerSurname,String FB, String LK,String societyName, String sirett)
 	{
 		name = customerName;
 		surname = customerSurname;

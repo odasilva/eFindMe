@@ -67,7 +67,7 @@ public class RelationManager extends JFrame implements ActionListener{
 		mnClient.add(mntmNewMenuItem_1);
 		
 		setSize(new Dimension(1280, 760));
-		setTitle(client.getSociety());
+		setTitle("eFindMe - " + client.getSociety());
 		setVisible(true);
 	}
 

@@ -97,22 +97,23 @@ public class RelationManager extends JFrame implements ActionListener{
 	}
 
 	private Customer LoadClient() {
-		String clientName = document.getElementsByTagName("name").item(0).getNodeValue();
-		String clientFirstName = document.getElementsByTagName("name").item(0).getNodeValue();
+		String clientName = document.getElementsByTagName("name").item(0).getTextContent();
+		String clientFirstName = document.getElementsByTagName("name").item(0).getTextContent();
 		Customer c = new Customer(clientName,clientFirstName);
-		c.setPseudo(document.getElementsByTagName("pseudo").item(0).getNodeValue());
-		c.setFacebook(document.getElementsByTagName("facebook").item(0).getNodeValue());
-		c.setEmail(document.getElementsByTagName("email").item(0).getNodeValue());
-		c.setLinkedIn(document.getElementsByTagName("linkedin").item(0).getNodeValue());
-		c.setGooglePlus(document.getElementsByTagName("google_plus").item(0).getNodeValue());
-		c.setTwitter(document.getElementsByTagName("twitter").item(0).getNodeValue());
-		c.setViadeo(document.getElementsByTagName("viadeo").item(0).getNodeValue());
-		c.setWebPerso("web_perso");
-		c.setWebPro(document.getElementsByTagName("web_pro").item(0).getNodeValue());
-		c.setSociety(document.getElementsByTagName("society").item(0).getNodeValue());
-		c.setSiret(document.getElementsByTagName("siret").item(0).getNodeValue());
+		c.setPseudo(document.getElementsByTagName("pseudo").item(0).getTextContent());
+		c.setFacebook(document.getElementsByTagName("facebook").item(0).getTextContent());
+		c.setEmail(document.getElementsByTagName("email").item(0).getTextContent());
+		c.setLinkedIn(document.getElementsByTagName("linkedin").item(0).getTextContent());
+		c.setGooglePlus(document.getElementsByTagName("google_plus").item(0).getTextContent());
+		c.setTwitter(document.getElementsByTagName("twitter").item(0).getTextContent());
+		c.setViadeo(document.getElementsByTagName("viadeo").item(0).getTextContent());
+		c.setWebPerso(document.getElementsByTagName("web_perso").item(0).getTextContent());
+		c.setWebPro(document.getElementsByTagName("web_pro").item(0).getTextContent());
+		c.setSociety(document.getElementsByTagName("society").item(0).getTextContent());
+		c.setSiret(document.getElementsByTagName("siret").item(0).getTextContent());
 		
 		NodeList xmlLlientReferences = document.getElementsByTagName("reference");
+		
 		
 		return c;
 	}

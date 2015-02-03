@@ -1,25 +1,26 @@
 <EfindMe>
 <customer>
-	<name></name>
-	<first_name></first_name>
-	<pseudo></pseudo>
-	<society></society>
-	<siret></siret>
-	<facebook></facebook>
-	<twitter></twitter>
-	<google_plus></google_plus>
-	<linkedin></linkedin>
-	<viadeo></viadeo>
-	<web_perso></web_perso>
-	<web_pro></web_pro>
-	<email></email>	
+	<name>CAMBRAY</name>
+	<first_name>Jerome</first_name>
+	<pseudo>Yo</pseudo>
+	<society>Weed Inc.</society>
+	<siret>#1234567890</siret>
+	<facebook>www.facebook.fr/jerome_cambray</facebook>
+	<twitter>www.twitter.com/jerome_cambray</twitter>
+	<google_plus>www.googleplus/jcambray</google_plus>
+	<linkedin>www.lk/jc</linkedin>
+	<viadeo>www.viadeo.fr/jeromeCambray</viadeo>
+	<web_perso>www.webPerso@jcambray.com</web_perso>
+	<web_pro>www.WeedSmockez.com</web_pro>
+	<email>ws@wdsmocke.com</email>	
 </customer>
 <reference>
 	<name_firstname_reference>
-		<url positive = true ></url>
+		<url positive = "true" ></url>
 	</name_firstname_reference>
 	<society>
-		<url postive = false ></url>
+		<url postive = "false" ></url>
 </society>
 </reference>
-</EfinddMe>
+</EfindMe>
+

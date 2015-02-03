@@ -69,6 +69,5 @@ public class ClientRelationGraph extends JPanel{
 		obj.setStyle(NEGATIVE_RELATION_COLOR);
 	}
 	
-	private LoadClient();
 
 }

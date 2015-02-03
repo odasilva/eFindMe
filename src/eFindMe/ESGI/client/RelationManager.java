@@ -18,6 +18,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
@@ -98,6 +100,20 @@ public class RelationManager extends JFrame implements ActionListener{
 		String clientName = document.getElementsByTagName("name").item(0).getNodeValue();
 		String clientFirstName = document.getElementsByTagName("name").item(0).getNodeValue();
 		Customer c = new Customer(clientName,clientFirstName);
+		c.setPseudo(document.getElementsByTagName("pseudo").item(0).getNodeValue());
+		c.setFacebook(document.getElementsByTagName("facebook").item(0).getNodeValue());
+		c.setEmail(document.getElementsByTagName("email").item(0).getNodeValue());
+		c.setLinkedIn(document.getElementsByTagName("linkedin").item(0).getNodeValue());
+		c.setGooglePlus(document.getElementsByTagName("google_plus").item(0).getNodeValue());
+		c.setTwitter(document.getElementsByTagName("twitter").item(0).getNodeValue());
+		c.setViadeo(document.getElementsByTagName("viadeo").item(0).getNodeValue());
+		c.setWebPerso("web_perso");
+		c.setWebPro(document.getElementsByTagName("web_pro").item(0).getNodeValue());
+		c.setSociety(document.getElementsByTagName("society").item(0).getNodeValue());
+		c.setSiret(document.getElementsByTagName("siret").item(0).getNodeValue());
+		
+		NodeList xmlLlientReferences = document.getElementsByTagName("reference");
+		
 		return c;
 	}
 

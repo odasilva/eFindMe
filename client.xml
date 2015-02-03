@@ -1,0 +1,25 @@
+<EfindMe>
+<customer>
+	<name></name>
+	<first_name></first_name>
+	<pseudo></pseudo>
+	<society></society>
+	<siret></siret>
+	<facebook></facebook>
+	<twitter></twitter>
+	<google_plus></google_plus>
+	<linkedin></linkedin>
+	<viadeo></viadeo>
+	<web_perso></web_perso>
+	<web_pro></web_pro>
+	<email></email>	
+</customer>
+<reference>
+	<name_firstname_reference>
+		<url positive = true ></url>
+	</name_firstname_reference>
+	<society>
+		<url postive = false ></url>
+</society>
+</reference>
+</EfinddMe>

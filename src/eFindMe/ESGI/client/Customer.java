@@ -1,17 +1,20 @@
 package eFindMe.ESGI.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
 	
-	private String name,surname,facebook,LinkedIn,society,siret;
+	private String name,surname,pseudo,facebook,twitter
+	,LinkedIn,society,siret,googlePlus,viadeo,webPerso,webPro,email;
 	
-	public  Customer(String customerName,String customerSurname,String FB, String LK,String societyName, String sirett)
+	private List referencesList;
+	
+	public  Customer(String customerName,String customerFirstname)
 	{
 		name = customerName;
-		surname = customerSurname;
-		facebook = FB;
-		LinkedIn = LK;
-		society = societyName;
-		siret = sirett;
+		surname = customerFirstname;
+		setReferencesList(new ArrayList());
 	}
 
 	public String getName() {
@@ -20,6 +23,62 @@ public class Customer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+	public String getTwitter() {
+		return twitter;
+	}
+
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+
+	public String getGooglePlus() {
+		return googlePlus;
+	}
+
+	public void setGooglePlus(String googlePlus) {
+		this.googlePlus = googlePlus;
+	}
+
+	public String getViadeo() {
+		return viadeo;
+	}
+
+	public void setViadeo(String viadeo) {
+		this.viadeo = viadeo;
+	}
+
+	public String getWebPerso() {
+		return webPerso;
+	}
+
+	public void setWebPerso(String webPerso) {
+		this.webPerso = webPerso;
+	}
+
+	public String getWebPro() {
+		return webPro;
+	}
+
+	public void setWebPro(String webPro) {
+		this.webPro = webPro;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSurname() {
@@ -60,6 +119,14 @@ public class Customer {
 
 	public void setSiret(String siret) {
 		this.siret = siret;
+	}
+
+	public List getReferencesList() {
+		return referencesList;
+	}
+
+	public void setReferencesList(List referencesList) {
+		this.referencesList = referencesList;
 	}
 
 	

@@ -16,11 +16,16 @@
 </customer>
 <reference>
 	<name_firstname_reference>
-		<url positive = "true" ></url>
+		<url positive = "true" >www.oneltone_lol.com</url>
+		<url positive = "false" >www.oneltone_lenf.com</url>
 	</name_firstname_reference>
 	<society>
-		<url postive = "false" ></url>
+		<url postive = "false" >www.OnelSoci_Societedemerde.com</url>
+		<url>www.google.com</url>
 </society>
+<facebook>
+         <url postive="true">www.google.com</url>
+</facebook>
 </reference>
 </EfindMe>
 

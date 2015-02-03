@@ -112,8 +112,21 @@ public class RelationManager extends JFrame implements ActionListener{
 		c.setSociety(document.getElementsByTagName("society").item(0).getTextContent());
 		c.setSiret(document.getElementsByTagName("siret").item(0).getTextContent());
 		
-		NodeList xmlLlientReferences = document.getElementsByTagName("reference");
+		NodeList xmlClientReferences = document.getElementsByTagName("reference").item(0).getChildNodes();
+		String test = xmlClientReferences.item(1).getChildNodes().item(1).getTextContent();
 		
+		for(int i = 1; i <= xmlClientReferences.getLength(); i ++)
+		{
+			String source = xmlClientReferences.item(i).getNodeName();
+			
+			for(int j = 1; j <= xmlClientReferences.item(i).getChildNodes().getLength();i++)
+			{
+				String url = xmlClientReferences.item(i).getChildNodes().item(j).getTextContent();
+				String positive = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive").getTextContent();
+				Reference r = new Reference(source, url, positive);
+				c.getReferencesList().add(r);
+			}
+		}
 		
 		return c;
 	}

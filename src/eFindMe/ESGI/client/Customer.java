@@ -8,13 +8,13 @@ public class Customer {
 	private String name,surname,pseudo,facebook,twitter
 	,LinkedIn,society,siret,googlePlus,viadeo,webPerso,webPro,email;
 	
-	private List referencesList;
+	private ArrayList<Reference> referencesList;
 	
 	public  Customer(String customerName,String customerFirstname)
 	{
 		name = customerName;
 		surname = customerFirstname;
-		setReferencesList(new ArrayList());
+		setReferencesList(new ArrayList<Reference>());
 	}
 
 	public String getName() {
@@ -121,11 +121,11 @@ public class Customer {
 		this.siret = siret;
 	}
 
-	public List getReferencesList() {
+	public ArrayList<Reference> getReferencesList() {
 		return referencesList;
 	}
 
-	public void setReferencesList(List referencesList) {
+	public void setReferencesList(ArrayList<Reference> referencesList) {
 		this.referencesList = referencesList;
 	}
 

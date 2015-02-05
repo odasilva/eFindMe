@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
@@ -12,13 +13,13 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -29,6 +30,7 @@ public class RelationManager extends JFrame implements ActionListener{
 	
 	private Customer client;
 	private  Document document;
+	private ClientRelationGraph clientGraph;
 	
 	
 	public RelationManager(String xml) {
@@ -66,7 +68,8 @@ public class RelationManager extends JFrame implements ActionListener{
 			centerPanel.setBorder(BorderFactory.createTitledBorder("Relations de " + client.getSociety()));
 			centerPanel.setPreferredSize(new Dimension(400,400));
 			centerPanel.setLayout(new BorderLayout());
-			centerPanel.add(new ClientRelationGraph(client, centerPanel,document),BorderLayout.CENTER);
+			clientGraph = new ClientRelationGraph(client, centerPanel,document);
+			centerPanel.add(clientGraph,BorderLayout.CENTER);
 			getContentPane().add(centerPanel,BorderLayout.CENTER);
 			
 			JMenuBar menuBar = new JMenuBar();
@@ -86,7 +89,9 @@ public class RelationManager extends JFrame implements ActionListener{
 			
 			setSize(new Dimension(1280, 760));
 			setTitle("eFindMe - " + client.getSociety());
+			setExtendedState( getExtendedState()|JFrame.MAXIMIZED_BOTH );
 			setVisible(true);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			// TODO Auto-generated catch block
@@ -97,6 +102,7 @@ public class RelationManager extends JFrame implements ActionListener{
 	}
 
 	private Customer LoadClient() {
+		
 		String clientName = document.getElementsByTagName("name").item(0).getTextContent();
 		String clientFirstName = document.getElementsByTagName("name").item(0).getTextContent();
 		Customer c = new Customer(clientName,clientFirstName);
@@ -113,30 +119,49 @@ public class RelationManager extends JFrame implements ActionListener{
 		c.setSiret(document.getElementsByTagName("siret").item(0).getTextContent());
 		
 		NodeList xmlClientReferences = document.getElementsByTagName("reference").item(0).getChildNodes();
-		String test = xmlClientReferences.item(1).getChildNodes().item(1).getTextContent();
 		
-		for(int i = 1; i <= xmlClientReferences.getLength(); i ++)
+		for(int i = 1; i < xmlClientReferences.getLength(); i ++)
 		{
 			String source = xmlClientReferences.item(i).getNodeName();
 			
-			for(int j = 1; j <= xmlClientReferences.item(i).getChildNodes().getLength();i++)
+			for(int j = 1; j < xmlClientReferences.item(i).getChildNodes().getLength();j++)
 			{
-				String url = xmlClientReferences.item(i).getChildNodes().item(j).getTextContent();
-				String positive = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive").getTextContent();
-				Reference r = new Reference(source, url, positive);
-				c.getReferencesList().add(r);
+				if(xmlClientReferences.item(i).getChildNodes().item(j).getNodeName() == "url")
+				{
+					String url = xmlClientReferences.item(i).getChildNodes().item(j).getTextContent();
+					String positive="";
+					if(xmlClientReferences.item(i).getChildNodes().item(j).hasAttributes())
+					{
+						if(xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive") != null)
+						positive = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive").getTextContent();
+					}
+				
+					Reference r = new Reference(source, url, positive);
+					c.getReferencesList().add(r);
+				}
 			}
 		}
 		
 		return c;
 	}
+	
+	
+    
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void dispose() {
+		clientGraph = null;
+		super.dispose();
+	}
 	
 	
+	
+	   
 
 }

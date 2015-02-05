@@ -3,14 +3,20 @@ package eFindMe.ESGI.client;
 
 public class Reference {
 	
-	private String source, value, isPositive;	
+	private String source, url, isPositive;	
 
 	
 	public Reference(String referenceSource, String url, String positive)
 	{
 		source =  referenceSource;
-		value = url;
+		this.url = url;
 		isPositive = positive;
+	}
+
+
+	@Override
+	public String toString() {
+		return this.url;
 	}
 
 
@@ -24,13 +30,13 @@ public class Reference {
 	}
 
 
-	public String getValue() {
-		return value;
+	public String getUrl() {
+		return url;
 	}
 
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setUrl(String value) {
+		this.url = value;
 	}
 
 

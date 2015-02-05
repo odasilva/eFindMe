@@ -20,11 +20,11 @@
 		<url positive = "false" >www.oneltone_lenf.com</url>
 	</name_firstname_reference>
 	<society>
-		<url postive = "false" >www.OnelSoci_Societedemerde.com</url>
+		<url positive = "false" >www.OnelSoci_Societedemerde.com</url>
 		<url>www.google.com</url>
 </society>
 <facebook>
-         <url postive="true">www.google.com</url>
+         <url positive = "true" >www.google.com</url>
 </facebook>
 </reference>
 </EfindMe>

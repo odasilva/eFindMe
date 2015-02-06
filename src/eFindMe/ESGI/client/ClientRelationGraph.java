@@ -51,8 +51,8 @@ public class ClientRelationGraph extends JPanel{
 		c.getReferencesList().add(new Reference("test1", "azeaz@az.fr", "true"));
 		c.getReferencesList().add(new Reference("test3", "azeaz@az.fr", "true"));
 		c.getReferencesList().add(new Reference("test1", "azeaz@az.fr", "true"));
-		c.getReferencesList().add(new Reference("test3", "azeaz@az.fr", "true"));
-		*/
+		c.getReferencesList().add(new Reference("test3", "azeaz@az.fr", "true"));*/
+		
 		
 		
 			for (int i = 0; i < client.getReferencesList().size(); i++)
@@ -171,6 +171,7 @@ public class ClientRelationGraph extends JPanel{
 	{
 		
 		mxCell rect = null;
+		
 		if(r.getIsPositive().equals("true"))
 		{
 			 rect = (mxCell) graph.insertVertex(null,r.getUrl(),r.getSource(),xPos,yPos,width,height

@@ -20,6 +20,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -132,7 +134,9 @@ public class RelationManager extends JFrame implements ActionListener{
 					String positive="";
 					if(xmlClientReferences.item(i).getChildNodes().item(j).hasAttributes())
 					{
-						if(xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive") != null)
+						NamedNodeMap test = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes();
+						Node positiveAttr = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive");
+						if(positiveAttr != null)
 						positive = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive").getTextContent();
 					}
 				

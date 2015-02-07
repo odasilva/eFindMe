@@ -25,6 +25,10 @@ import java.io.*;
 
 public class SaveCustomer extends JFrame implements ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private DocumentBuilderFactory fabrique;
 	private DocumentBuilder constructeur;
 	private Document doc;
@@ -283,12 +287,6 @@ public class SaveCustomer extends JFrame implements ActionListener
         }
 
 }
-	
-	public static void main(String[] args) {
-		
-		SaveCustomer saveCustomer = new SaveCustomer();
-		
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

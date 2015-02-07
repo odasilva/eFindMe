@@ -1,22 +1,22 @@
 package eFindMe.ESGI.client;
 
 import java.awt.BorderLayout;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.view.mxGraph;
+import com.mxgraph.view.mxGraphSelectionModel;
 
 public class ClientRelationGraph extends JPanel{
 	
@@ -31,6 +31,7 @@ public class ClientRelationGraph extends JPanel{
 	private String xml;
 	private mxCell clientEllipse;
 	private mxCell parent;
+	private mxGraphComponent graphComponent;
 	
 	
 	public ClientRelationGraph(Customer c,JPanel _parent,Document d)
@@ -42,18 +43,33 @@ public class ClientRelationGraph extends JPanel{
 		graphItemsMap = new HashMap<String, mxCell>();
 		
 		graph = new mxGraph();
+		graphComponent = new mxGraphComponent(graph);
+		
+		
+		graph.getSelectionModel().addListener(mxEvent.CHANGE, new mxIEventListener() {
+
+			@Override
+			public void invoke(Object arg0, mxEventObject arg1) {
+				mxGraphSelectionModel model = (mxGraphSelectionModel)arg0;
+				mxCell cell = (mxCell)model.getCells()[0];
+				Reference ref = (Reference)cell.getValue();
+				JOptionPane.showConfirmDialog(null, ref.getUrl());
+			}
+		});
+		
 		
 		graph.getModel().beginUpdate();
 		
 		createClientEllipse(client.getSociety(),700,300,220,110);
 		parent = (mxCell)graph.getDefaultParent();
+		
 		/*c.getReferencesList().add(new Reference("test", "azeaz@az.fr", "true"));
 		c.getReferencesList().add(new Reference("test1", "azeaz@az.fr", "true"));
 		c.getReferencesList().add(new Reference("test3", "azeaz@az.fr", "true"));
 		c.getReferencesList().add(new Reference("test1", "azeaz@az.fr", "true"));
 		c.getReferencesList().add(new Reference("test3", "azeaz@az.fr", "true"));*/
 		
-		
+
 		
 			for (int i = 0; i < client.getReferencesList().size(); i++)
 			{
@@ -174,17 +190,17 @@ public class ClientRelationGraph extends JPanel{
 		
 		if(r.getIsPositive().equals("true"))
 		{
-			 rect = (mxCell) graph.insertVertex(null,r.getUrl(),r.getSource(),xPos,yPos,width,height
+			 rect = (mxCell) graph.insertVertex(null,r.getUrl(),r,xPos,yPos,width,height
 					,POSITIVE_RELATION_COLOR);
 		}
 		if(r.getIsPositive().equals("false"))
 		{
-			 rect = (mxCell) graph.insertVertex(null,r.getUrl(),r.getSource(),xPos,yPos,width,height
+			 rect = (mxCell) graph.insertVertex(null,r.getUrl(),r,xPos,yPos,width,height
 					,NEGATIVE_RELATION_COLOR);
 		}
 		if(r.getIsPositive().equals(""))
 		{
-			 rect = (mxCell) graph.insertVertex(null,r.getUrl(),r.getSource(),xPos,yPos,width,height
+			 rect = (mxCell) graph.insertVertex(null,r.getUrl(),r,xPos,yPos,width,height
 					,RECTANGLES_COLOR);
 		}
 		
@@ -213,6 +229,8 @@ public class ClientRelationGraph extends JPanel{
 	{
 		obj.setStyle(NEGATIVE_RELATION_COLOR);
 	}
+	
+	
 	
 
 }

@@ -83,7 +83,6 @@ public class SaveCustomer extends JFrame implements ActionListener
 		//Interface
 		this.setTitle("Créer un Client");
 		this.setSize(640, 540);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
@@ -238,10 +237,10 @@ public class SaveCustomer extends JFrame implements ActionListener
 		File fichierXML = new File(nameFile);
 		BufferedWriter out;
 		try {
-			out = new BufferedWriter(new FileWriter(fichierXML));
+			out = new BufferedWriter(new FileWriter("src/Client/"+fichierXML));
 			generateXMLFile(doc,fichierXML);
 			out.close();
-			JOptionPane.showMessageDialog(this, "Le client a bien été enregistrer.");
+			JOptionPane.showMessageDialog(this, "Le client a bien été enregistré.");
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		} catch (IOException e) {
 			e.printStackTrace();

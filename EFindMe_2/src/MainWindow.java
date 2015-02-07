@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -64,10 +65,16 @@ public class MainWindow extends JFrame implements ActionListener{
 		}
 		else if(arg0.getSource() == searchRef)
 		{ 
-	     	
+			JFileChooser chooser = new JFileChooser("src/Client/");
+	        if(chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+	           //Appelle Objet Benoist : "src/Client"+ chooser.getSelectedFile().getName()
+	        }
 		}else if(arg0.getSource() == seeGraph)
 		{ 
-	     	
+			JFileChooser chooser = new JFileChooser("src/Graph/");
+	        if(chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+	           //Appelle Objet Jerome : "src/Graph"+ chooser.getSelectedFile().getName()
+	        }
 		}
 		
 	}

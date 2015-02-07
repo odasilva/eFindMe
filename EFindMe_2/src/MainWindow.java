@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import eFindMe.ESGI.SaveCustomer;
+import eFindMe.ESGI.client.RelationManager;
 
 
 public class MainWindow extends JFrame implements ActionListener{
@@ -74,6 +75,7 @@ public class MainWindow extends JFrame implements ActionListener{
 			JFileChooser chooser = new JFileChooser("src/Graph/");
 	        if(chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 	           //Appelle Objet Jerome : "src/Graph"+ chooser.getSelectedFile().getName()
+	        	new RelationManager(chooser.getSelectedFile().getName());
 	        }
 		}
 		

@@ -16,11 +16,11 @@
 </customer>
 <reference>
 	<name_firstname_reference>
-		<url positive = "true" >www.oneltone_lol.com</url>
-		<url positive = "false" >www.oneltone_lenf.com</url>
+		<url positive = "true" >www.onne_lol.com</url>
+		<url positive = "false" >www.oone_lenf.com</url>
 	</name_firstname_reference>
 	<society>
-		<url positive = "false" >www.OnelSoci_Societedemerde.com</url>
+		<url positive = "false" >www.Soci_Societedemerde.com</url>
 		<url>www.google.com</url>
 </society>
 <facebook>

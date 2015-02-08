@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.w3c.dom.Document;
@@ -21,26 +21,29 @@ import com.mxgraph.view.mxGraphSelectionModel;
 public class ClientRelationGraph extends JPanel{
 	
 	private Customer client;
-	private JPanel parentContainer;
 	private mxGraph graph;
 	private final String RECTANGLES_COLOR = mxConstants.STYLE_FILLCOLOR + "=#2E9AFE";
 	private final String POSITIVE_RELATION_COLOR = mxConstants.STYLE_FILLCOLOR + "=#01DF01";
 	private final String NEGATIVE_RELATION_COLOR = mxConstants.STYLE_FILLCOLOR + "=#FE2E2E";
+	private RelationManager parentFrame;
 	private Map<String , mxCell> graphItemsMap;
 	private Document doc;
 	private String xml;
 	private mxCell clientEllipse;
 	private mxCell parent;
 	private mxGraphComponent graphComponent;
+	public mxCell selectedCell;
 	
 	
-	public ClientRelationGraph(Customer c,JPanel _parent,Document d)
+	public ClientRelationGraph(RelationManager window, Customer c,Document d)
 	{
 		super(new BorderLayout());
-		parentContainer = _parent;
+		parentFrame = window;
+		//parentContainer = _parent;
 		client = c;
 		doc = d;
 		graphItemsMap = new HashMap<String, mxCell>();
+		selectedCell = null;
 		
 		graph = new mxGraph();
 		graphComponent = new mxGraphComponent(graph);
@@ -52,8 +55,11 @@ public class ClientRelationGraph extends JPanel{
 			public void invoke(Object arg0, mxEventObject arg1) {
 				mxGraphSelectionModel model = (mxGraphSelectionModel)arg0;
 				mxCell cell = (mxCell)model.getCells()[0];
-				Reference ref = (Reference)cell.getValue();
-				JOptionPane.showConfirmDialog(null, ref.getUrl());
+				if(cell.isVertex())
+				{
+					selectedCell = cell;
+					parentFrame.setDescription((Reference)cell.getValue());
+				}
 			}
 		});
 		
@@ -231,6 +237,15 @@ public class ClientRelationGraph extends JPanel{
 	}
 	
 	
+	public void editSelectedReference()
+	{
+		
+		graph.refresh();
+	}
 	
+	public void deleteSelectedReference()
+	{
+		graph.removeCells(new Object[]{selectedCell});
+	}
 
 }

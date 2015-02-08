@@ -16,12 +16,12 @@ public class Reference {
 
 	@Override
 	public String toString() {
-		return this.url;
+		return this.getSource();
 	}
 
 
 	public String getSource() {
-		return source;
+		return (!source.equals("name_firstname_reference")) ? this.source : "nom et prenom";
 	}
 
 

@@ -5,10 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -25,6 +25,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.swing.JLabel;
+
+import java.awt.FlowLayout;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+
 
 
 
@@ -33,6 +40,8 @@ public class RelationManager extends JFrame implements ActionListener{
 	private Customer client;
 	private  Document document;
 	private ClientRelationGraph clientGraph;
+	
+	private JLabel sourceLabel,linkLabel,appreciationLabel;
 	
 	
 	public RelationManager(String xml) {
@@ -57,6 +66,19 @@ public class RelationManager extends JFrame implements ActionListener{
 			southPanel.setBackground(Color.WHITE);
 			southPanel.setPreferredSize(new Dimension(150, 150));
 			getContentPane().add(southPanel, BorderLayout.SOUTH);
+			southPanel.setLayout(null);
+			
+			JButton btnSupprimer = new JButton("Supprimer");
+			btnSupprimer.addActionListener(new ActionListener()
+			{
+				  public void actionPerformed(ActionEvent e)
+				  {
+					 clientGraph.deleteSelectedReference();
+				  }
+				});
+			
+			btnSupprimer.setBounds(172, 71, 97, 25);
+			southPanel.add(btnSupprimer);
 			
 			
 			JPanel eastPanel = new JPanel();
@@ -65,12 +87,42 @@ public class RelationManager extends JFrame implements ActionListener{
 			
 			eastPanel.setPreferredSize(new Dimension(250, 250));
 			getContentPane().add(eastPanel, BorderLayout.EAST);
+			BoxLayout eastPanelLayout = new BoxLayout(eastPanel, BoxLayout.Y_AXIS);
+			eastPanel.setLayout(eastPanelLayout);
+			
+			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			sourceLabel = new JLabel("");
+			eastPanel.add(sourceLabel);
+			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			linkLabel = new JLabel("");
+			eastPanel.add(linkLabel);
+			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			appreciationLabel = new JLabel("");
+			eastPanel.add(appreciationLabel);
+			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			
+			JButton btnVerifierLien = new JButton("Vérifier");
+			btnVerifierLien.addActionListener(new ActionListener()
+			{
+				  public void actionPerformed(ActionEvent e)
+				  {
+					  try {
+						Reference selectedReference = (Reference)clientGraph.selectedCell.getValue();
+						Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + selectedReference.getUrl());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				  }
+				});
+			
+			eastPanel.add(btnVerifierLien);
 			
 			JPanel centerPanel = new JPanel();
 			centerPanel.setBorder(BorderFactory.createTitledBorder("Relations de " + client.getSociety()));
 			centerPanel.setPreferredSize(new Dimension(400,400));
 			centerPanel.setLayout(new BorderLayout());
-			clientGraph = new ClientRelationGraph(client, centerPanel,document);
+			clientGraph = new ClientRelationGraph(this,client,document);
 			centerPanel.add(clientGraph,BorderLayout.CENTER);
 			getContentPane().add(centerPanel,BorderLayout.CENTER);
 			
@@ -149,7 +201,20 @@ public class RelationManager extends JFrame implements ActionListener{
 		return c;
 	}
 	
-	
+	public void setDescription(Reference ref)
+	{
+		sourceLabel.setText("Source: " + ref.getSource());
+		linkLabel.setText("Lien: " + ref.getUrl());
+		if(ref.getIsPositive() == "")
+			appreciationLabel.setText("Appreciation: A vérifier");
+		else
+			if(ref.getIsPositive().equals("true"))
+				appreciationLabel.setText("Appreciation: positive");
+			else
+				if(ref.getIsPositive().equals("false"))
+					appreciationLabel.setText("Appreciation: négative");
+			
+	}
     
 
 	@Override
@@ -163,9 +228,4 @@ public class RelationManager extends JFrame implements ActionListener{
 		clientGraph = null;
 		super.dispose();
 	}
-	
-	
-	
-	   
-
 }

@@ -31,6 +31,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 
 
@@ -62,7 +63,7 @@ public class RelationManager extends JFrame implements ActionListener{
 			getContentPane().setLayout(new BorderLayout(0, 0));
 			
 			JPanel southPanel = new JPanel();
-			southPanel.setBorder(BorderFactory.createTitledBorder("Commandes"));
+			southPanel.setBorder(BorderFactory.createTitledBorder("Actions"));
 			southPanel.setBackground(Color.WHITE);
 			southPanel.setPreferredSize(new Dimension(150, 150));
 			getContentPane().add(southPanel, BorderLayout.SOUTH);
@@ -79,6 +80,28 @@ public class RelationManager extends JFrame implements ActionListener{
 			
 			btnSupprimer.setBounds(172, 71, 97, 25);
 			southPanel.add(btnSupprimer);
+			
+			String[] appreciationTypes = {"POSITIF","NEGATIF","NEUTRE"};
+			JComboBox appreciationCB = new JComboBox(appreciationTypes);
+			appreciationCB.addActionListener(new ActionListener()
+			{
+				  public void actionPerformed(ActionEvent e)
+				  {
+					  JComboBox cb = (JComboBox) e.getSource();
+					 clientGraph.editSelectedReference((String)cb.getSelectedItem());
+				  }
+				});
+			
+			appreciationCB.setBounds(583, 72, 91, 22);
+			southPanel.add(appreciationCB);
+			
+			JLabel lblDonnerUneApprciation = new JLabel("Donner une appr\u00E9ciation:");
+			lblDonnerUneApprciation.setBounds(419, 75, 152, 16);
+			southPanel.add(lblDonnerUneApprciation);
+			
+			JLabel lblSupprimerLaRfrence = new JLabel("Supprimer la r\u00E9f\u00E9rence:");
+			lblSupprimerLaRfrence.setBounds(12, 75, 148, 16);
+			southPanel.add(lblSupprimerLaRfrence);
 			
 			
 			JPanel eastPanel = new JPanel();

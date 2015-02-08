@@ -26,7 +26,6 @@ public class ClientRelationGraph extends JPanel{
 	private final String POSITIVE_RELATION_COLOR = mxConstants.STYLE_FILLCOLOR + "=#01DF01";
 	private final String NEGATIVE_RELATION_COLOR = mxConstants.STYLE_FILLCOLOR + "=#FE2E2E";
 	private RelationManager parentFrame;
-	private Map<String , mxCell> graphItemsMap;
 	private Document doc;
 	private String xml;
 	private mxCell clientEllipse;
@@ -39,10 +38,8 @@ public class ClientRelationGraph extends JPanel{
 	{
 		super(new BorderLayout());
 		parentFrame = window;
-		//parentContainer = _parent;
 		client = c;
 		doc = d;
-		graphItemsMap = new HashMap<String, mxCell>();
 		selectedCell = null;
 		
 		graph = new mxGraph();
@@ -54,6 +51,11 @@ public class ClientRelationGraph extends JPanel{
 			@Override
 			public void invoke(Object arg0, mxEventObject arg1) {
 				mxGraphSelectionModel model = (mxGraphSelectionModel)arg0;
+				if(model.getCells()[0] == null)
+				{
+					graph.getSelectionModel().clear();
+					return;
+				}
 				mxCell cell = (mxCell)model.getCells()[0];
 				if(cell.isVertex())
 				{
@@ -218,7 +220,6 @@ public class ClientRelationGraph extends JPanel{
 		graph.getModel().beginUpdate();
 		clientEllipse = (mxCell) graph.insertVertex(null,null,text,xPos,yPos,width,height
 				,mxConstants.STYLE_SHAPE + "="+mxConstants.SHAPE_ELLIPSE);
-		graphItemsMap.put(text, clientEllipse);
 	    graph.getModel().endUpdate();
 	}
 	
@@ -237,15 +238,41 @@ public class ClientRelationGraph extends JPanel{
 	}
 	
 	
-	public void editSelectedReference()
+	public void editSelectedReference(String appreciation)
 	{
+		if(selectedCell == null)
+			return;
+		if(appreciation.equals("POSITIF"))
+		{
+			selectedCell.setStyle(POSITIVE_RELATION_COLOR);
+			Reference ref = (Reference)selectedCell.getValue();
+			ref.setIsPositive("true");
+			parentFrame.setDescription(ref);
+		}
+		if(appreciation.equals("NEGATIF"))
+		{
+			selectedCell.setStyle(NEGATIVE_RELATION_COLOR);
+			Reference ref = (Reference)selectedCell.getValue();
+			ref.setIsPositive("false");
+			parentFrame.setDescription(ref);
+		}
+		if(appreciation.equals("NEUTRE"))
+		{
+			selectedCell.setStyle(RECTANGLES_COLOR);
+			Reference ref = (Reference)selectedCell.getValue();
+			ref.setIsPositive("");
+			parentFrame.setDescription(ref);
+		}
 		
-		graph.refresh();
+		graphComponent.refresh();
 	}
 	
 	public void deleteSelectedReference()
 	{
+		if(selectedCell == null)
+			return;
 		graph.removeCells(new Object[]{selectedCell});
+		graphComponent.refresh();
 	}
 
 }

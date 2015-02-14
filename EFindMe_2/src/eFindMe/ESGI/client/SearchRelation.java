@@ -53,33 +53,7 @@ public class SearchRelation {
 		c.setWebPro(document.getElementsByTagName("web_pro").item(0).getTextContent());
 		c.setSociety(document.getElementsByTagName("society").item(0).getTextContent());
 		c.setSiret(document.getElementsByTagName("siret").item(0).getTextContent());
-		
-		NodeList xmlClientReferences = document.getElementsByTagName("reference").item(0).getChildNodes();
-		
-		for(int i = 1; i < xmlClientReferences.getLength(); i ++)
-		{
-			String source = xmlClientReferences.item(i).getNodeName();
 			
-			for(int j = 1; j < xmlClientReferences.item(i).getChildNodes().getLength();j++)
-			{
-				if(xmlClientReferences.item(i).getChildNodes().item(j).getNodeName() == "url")
-				{
-					String url = xmlClientReferences.item(i).getChildNodes().item(j).getTextContent();
-					String positive="";
-					if(xmlClientReferences.item(i).getChildNodes().item(j).hasAttributes())
-					{
-						NamedNodeMap test = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes();
-						Node positiveAttr = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive");
-						if(positiveAttr != null)
-						positive = xmlClientReferences.item(i).getChildNodes().item(j).getAttributes().getNamedItem("positive").getTextContent();
-					}
-				
-					Reference r = new Reference(source, url, positive);
-					c.getReferencesList().add(r);
-				}
-			}
-		}
-		
 		return c;
 	}
 }

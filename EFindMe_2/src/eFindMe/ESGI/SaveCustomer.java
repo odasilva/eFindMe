@@ -234,10 +234,10 @@ public class SaveCustomer extends JFrame implements ActionListener
 	
 	public void saveXml(String nameFile){
 
-		File fichierXML = new File(nameFile);
+		File fichierXML = new File("src/Client/"+nameFile);
 		BufferedWriter out;
 		try {
-			out = new BufferedWriter(new FileWriter("src/Client/"+fichierXML));
+			out = new BufferedWriter(new FileWriter(fichierXML));
 			generateXMLFile(doc,fichierXML);
 			out.close();
 			JOptionPane.showMessageDialog(this, "Le client a bien été enregistré.");
@@ -250,6 +250,7 @@ public class SaveCustomer extends JFrame implements ActionListener
 	
 	
 	static private void generateXMLFile(Document doc, File file){
+		
         Source s=new DOMSource(doc);
         // le résultat de cette transformation sera un flux d'écriture dans
         // un fichier

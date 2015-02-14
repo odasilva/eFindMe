@@ -171,7 +171,6 @@ public class RelationManager extends JFrame implements ActionListener{
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -183,17 +182,39 @@ public class RelationManager extends JFrame implements ActionListener{
 		String clientName = document.getElementsByTagName("name").item(0).getTextContent();
 		String clientFirstName = document.getElementsByTagName("name").item(0).getTextContent();
 		Customer c = new Customer(clientName,clientFirstName);
-		c.setPseudo(document.getElementsByTagName("pseudo").item(0).getTextContent());
-		c.setFacebook(document.getElementsByTagName("facebook").item(0).getTextContent());
-		c.setEmail(document.getElementsByTagName("email").item(0).getTextContent());
-		c.setLinkedIn(document.getElementsByTagName("linkedin").item(0).getTextContent());
-		c.setGooglePlus(document.getElementsByTagName("google_plus").item(0).getTextContent());
-		c.setTwitter(document.getElementsByTagName("twitter").item(0).getTextContent());
-		c.setViadeo(document.getElementsByTagName("viadeo").item(0).getTextContent());
-		c.setWebPerso(document.getElementsByTagName("web_perso").item(0).getTextContent());
-		c.setWebPro(document.getElementsByTagName("web_pro").item(0).getTextContent());
-		c.setSociety(document.getElementsByTagName("society").item(0).getTextContent());
-		c.setSiret(document.getElementsByTagName("siret").item(0).getTextContent());
+		
+		if(document.getElementsByTagName("pseudo").item(0) != null)
+			c.setPseudo(document.getElementsByTagName("pseudo").item(0).getTextContent());
+
+		if(document.getElementsByTagName("facebook").item(0) != null)
+			c.setFacebook(document.getElementsByTagName("facebook").item(0).getTextContent());
+
+		if(document.getElementsByTagName("email").item(0) != null)
+			c.setEmail(document.getElementsByTagName("email").item(0).getTextContent());
+
+		if(document.getElementsByTagName("linkedin").item(0) != null)
+			c.setLinkedIn(document.getElementsByTagName("linkedin").item(0).getTextContent());
+		
+		if(document.getElementsByTagName("google_plus").item(0) != null)
+			c.setGooglePlus(document.getElementsByTagName("google_plus").item(0).getTextContent());
+
+		if(document.getElementsByTagName("twitter").item(0) != null)
+			c.setTwitter(document.getElementsByTagName("twitter").item(0).getTextContent());
+
+		if(document.getElementsByTagName("viadeo").item(0) != null)
+			c.setViadeo(document.getElementsByTagName("viadeo").item(0).getTextContent());
+
+		if(document.getElementsByTagName("web_perso").item(0) != null)
+			c.setWebPerso(document.getElementsByTagName("web_perso").item(0).getTextContent());
+
+		if(document.getElementsByTagName("web_pro").item(0) != null)
+			c.setWebPro(document.getElementsByTagName("web_pro").item(0).getTextContent());
+
+		if(document.getElementsByTagName("society").item(0) != null)
+			c.setSociety(document.getElementsByTagName("society").item(0).getTextContent());
+
+		if(document.getElementsByTagName("siret").item(0) != null)
+			c.setSiret(document.getElementsByTagName("siret").item(0).getTextContent());
 		
 		NodeList xmlClientReferences = document.getElementsByTagName("reference").item(0).getChildNodes();
 		

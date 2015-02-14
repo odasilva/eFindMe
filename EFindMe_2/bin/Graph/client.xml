@@ -1,0 +1,31 @@
+<EfindMe>
+<customer>
+	<name>CAMBRAY</name>
+	<first_name>Jerome</first_name>
+	<pseudo>Yo</pseudo>
+	<society>Weed Inc.</society>
+	<siret>#1234567890</siret>
+	<facebook>www.facebook.fr/jerome_cambray</facebook>
+	<twitter>www.twitter.com/jerome_cambray</twitter>
+	<google_plus>www.googleplus/jcambray</google_plus>
+	<linkedin>www.lk/jc</linkedin>
+	<viadeo>www.viadeo.fr/jeromeCambray</viadeo>
+	<web_perso>www.webPerso@jcambray.com</web_perso>
+	<web_pro>www.WeedSmockez.com</web_pro>
+	<email>ws@wdsmocke.com</email>	
+</customer>
+<reference>
+	<name_firstname_reference>
+		<url positive = "true" >www.onne_lol.com</url>
+		<url positive = "false" >www.oone_lenf.com</url>
+	</name_firstname_reference>
+	<society>
+		<url positive = "false" >www.Soci_Societedemerde.com</url>
+		<url>www.google.com</url>
+</society>
+<facebook>
+         <url positive = "true" >www.google.com</url>
+</facebook>
+</reference>
+</EfindMe>
+

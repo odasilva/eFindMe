@@ -9,7 +9,11 @@ import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -24,14 +28,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import javax.swing.JLabel;
-
-import java.awt.FlowLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 
 
 
@@ -74,7 +70,8 @@ public class RelationManager extends JFrame implements ActionListener{
 			{
 				  public void actionPerformed(ActionEvent e)
 				  {
-					 clientGraph.deleteSelectedReference();
+					  if(JOptionPane.showConfirmDialog(null, "Etes-vous sur de vouloir supprimer la reference?") == JOptionPane.YES_OPTION)
+						  clientGraph.deleteSelectedReference();
 				  }
 				});
 			
@@ -155,10 +152,16 @@ public class RelationManager extends JFrame implements ActionListener{
 			JMenu mnClient = new JMenu("Fichier");
 			menuBar.add(mnClient);
 			
-			JMenuItem mntmChoisir = new JMenuItem("Ouvrir");
-			mnClient.add(mntmChoisir);
-			
 			JMenuItem mntmNewMenuItem = new JMenuItem("Enregistrer");
+			mntmNewMenuItem.addActionListener(new ActionListener()
+			{
+				  public void actionPerformed(ActionEvent e)
+				  {
+					  clientGraph.saveXml(client.getName());
+				  }
+				});
+			
+			
 			mnClient.add(mntmNewMenuItem);
 			
 			JMenuItem mntmNewMenuItem_1 = new JMenuItem("Fermer");

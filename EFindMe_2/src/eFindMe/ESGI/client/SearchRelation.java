@@ -1,6 +1,5 @@
 package eFindMe.ESGI.client;
 
-import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.File;

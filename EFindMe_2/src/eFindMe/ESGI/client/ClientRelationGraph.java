@@ -1,13 +1,28 @@
 package eFindMe.ESGI.client;
 
 import java.awt.BorderLayout;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
@@ -265,8 +280,34 @@ public class ClientRelationGraph extends JPanel{
 		}
 		
 		graphComponent.refresh();
+		
+		Reference ref = (Reference)selectedCell.getValue();
+		UpdateXMLDoc(ref);
+		
+		
 	}
 	
+	private void UpdateXMLDoc(Reference newRef) {
+		
+		 NodeList referenceNodes = doc.getElementsByTagName("reference").item(0).getChildNodes();
+		for (int i = 1; i < referenceNodes.getLength(); i++) {
+			Node node = referenceNodes.item(i);
+			NodeList childNodes = node.getChildNodes();
+			for(int j = 1; j < childNodes.getLength(); j++)
+			{
+				Node urlElement = childNodes.item(j);
+				if(!urlElement.getTextContent().equals(newRef.getUrl()))
+					continue;
+				if(urlElement.getAttributes().getNamedItem("positive") != null)
+				{
+					urlElement.getAttributes().getNamedItem("positive").setTextContent(newRef.getIsPositive());
+				}
+			}
+		}
+	}
+
+
+
 	public void deleteSelectedReference()
 	{
 		if(selectedCell == null)
@@ -274,5 +315,66 @@ public class ClientRelationGraph extends JPanel{
 		graph.removeCells(new Object[]{selectedCell});
 		graphComponent.refresh();
 	}
+	
+	public void saveXml(String nameFile){
+
+		File fichierXML = new File("src/Graph/"+nameFile + ".xml");
+		//JFileChooser fileChooser = new JFileChooser();
+		//fileChooser.setDialogTitle("Choix de l'emplacement du fichier de sauvegarde");
+		//int userSelection = fileChooser.showSaveDialog(new JFrame());
+		//if(!(userSelection == JFileChooser.APPROVE_OPTION) || fileChooser.getSelectedFile() == null)
+			//return;
+		//File fichierXML = fileChooser.getSelectedFile();
+		BufferedWriter out;
+		try {
+			out = new BufferedWriter(new FileWriter(fichierXML));
+			generateXMLFile(doc,fichierXML);
+			out.close();
+			JOptionPane.showMessageDialog(this, "Le client a bien été enregistré.");
+			//this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+private void generateXMLFile(Document doc, File file){
+		
+        Source s=new DOMSource(doc);
+        // le résultat de cette transformation sera un flux d'écriture dans
+        // un fichier
+        Result resultat = new StreamResult(file);
+         
+        // création du transformateur XML
+        Transformer transfo = null;
+        try {
+            transfo = TransformerFactory.newInstance().newTransformer();
+        } catch(TransformerConfigurationException e) {
+            System.err.println("Impossible de créer un transformateur XML.");
+            System.exit(1);
+        }
+         
+        // configuration du transformateur
+         
+        // sortie en XML
+        transfo.setOutputProperty(OutputKeys.METHOD, "xml");
+         
+        // inclut une déclaration XML (recommandé)
+        transfo.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+         
+        // codage des caractères : UTF-8. Ce pourrait être également ISO-8859-1
+        transfo.setOutputProperty(OutputKeys.ENCODING, "utf-8");
+         
+        // idente le fichier XML
+        transfo.setOutputProperty(OutputKeys.INDENT, "yes");
+         
+        try {
+            transfo.transform(s, resultat);
+        } catch(TransformerException e) {
+            System.err.println("La transformation a échoué : " + e);
+            System.exit(1);
+        }
+
+}
 
 }

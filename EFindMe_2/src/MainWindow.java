@@ -41,7 +41,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		this.setLocationRelativeTo(null);
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
-		top.setLayout(new GridLayout(14,1));
+		top.setLayout(new GridLayout(3,1));
 		
 		newClient.addActionListener(this);
 		searchRef.addActionListener(this);

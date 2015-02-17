@@ -1,10 +1,12 @@
 package eFindMe.ESGI.client;
 
+import java.awt.List;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -31,9 +33,13 @@ public class SearchRelation extends JFrame {
 	private Document doc;
 	private Element root;
 	private Element root_Cust;
+	private Element root_Reference;
+	private ArrayList<String> ListRef;
+	private ArrayList<String> ListUrlClient;
 	
 	public SearchRelation(String xml){
 		
+		ListUrlClient = new ArrayList<String>();
 		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
 		DocumentBuilder constructeur;
 		
@@ -107,12 +113,84 @@ public class SearchRelation extends JFrame {
 
 		root.appendChild(root_Cust);
 		
-
+		//Reference
+		root_Reference = doc.createElement("reference");
+	
+		fillUrlClient(client);
+		
+		fillReference(client.getSurname()+" "+client.getName(), "name_firstname_reference", client);
+		fillReference(client.getPseudo(), "pseudo", client);
+		fillReference(client.getSociety(), "society", client);
+		fillReference(client.getSiret(), "siret", client);
+		fillReference(client.getFacebook(), "facebook", client);
+		fillReference(client.getTwitter(), "twitter", client);
+		fillReference(client.getGooglePlus(), "google_plus", client);
+		fillReference(client.getLinkedIn(), "linkedin", client);
+		fillReference(client.getViadeo(), "viadeo", client);
+		fillReference(client.getWebPerso(), "web_perso", client);
+		fillReference(client.getWebPro(), "web_pro", client);
+		fillReference(client.getEmail(), "email", client);
+		
+		
+		
+		
+		root.appendChild(root_Reference);
+		
 		doc.appendChild(root);
 		saveXml("customer_"+client.getSurname()+"_"+client.getName()+".xml");
+		
+		
+		
 	}
 	
+	private void fillReference(String s, String element, Customer client){
+
+		Element ref = doc.createElement(element);
+						
+		
+		
+		ListRef = new ArrayList<String>();
+		
+		ListRef = (ArrayList<String>) GoogleSearch.search(s);
+
+		
+		for (String string : ListRef) {
+			Element url = doc.createElement("url");
+			url.setAttribute("Positive", isPositive(string, client));
+			url.appendChild(doc.createTextNode(string));
+			ref.appendChild(url);
+			
+		}
+		root_Reference.appendChild(ref);
+		
+	}
 	
+	private String isPositive(String url, Customer client){
+		String s = "";
+		
+		if(url.equals(client.getFacebook()) 
+		|| url.equals(client.getTwitter()) 
+		|| url.equals(client.getGooglePlus())  
+		|| url.equals(client.getLinkedIn())
+		|| url.equals(client.getWebPerso())
+		|| url.equals(client.getWebPro())
+		|| GoogleSearch.searchReference(ListUrlClient,url))
+		s = "true";
+					
+		return s;
+		
+	}
+	
+	private void fillUrlClient(Customer client) {
+		
+		ListUrlClient.add(client.getFacebook());
+		ListUrlClient.add(client.getTwitter());
+		ListUrlClient.add(client.getGooglePlus());  
+		ListUrlClient.add(client.getLinkedIn());
+		ListUrlClient.add(client.getWebPerso());
+		ListUrlClient.add(client.getWebPro());
+		
+	}
 	
 	private Customer LoadClient() {
 		

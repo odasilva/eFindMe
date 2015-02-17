@@ -63,7 +63,7 @@ public class GoogleSearch {
 	}
 	
 	
-	public static void searchReference(List<String> links,String url)
+	public static boolean searchReference(List<String> links,String url)
 	{
 		
 		for (String s : links) {
@@ -79,17 +79,19 @@ public class GoogleSearch {
 						continue;
 					if(element.text().toLowerCase().contains(url.toLowerCase()))
 					{
-						//DO SOMETHING
-						System.out.println();
+						return true;
 					}
 					
 				}
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (IllegalArgumentException e){
 				e.printStackTrace();
 			}
 		}
+		
+		return false;
 	}
 	
 }

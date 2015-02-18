@@ -118,45 +118,43 @@ public class SearchRelation extends JFrame {
 	
 		fillUrlClient(client);
 		
-			if(client.getSurname() != "" && client.getName()!= "")
+			if(client.getSurname() != "" && client.getName()!= "" && client.getSurname() != null && client.getName()!= null)
 				fillReference(client.getSurname()+" "+client.getName(), "name_firstname_reference", client);
 		
-			if(client.getPseudo() != "")
+			if(client.getPseudo() != "" && client.getPseudo() != null)
 				fillReference(client.getPseudo(), "pseudo", client);
 			
-			if(client.getSociety() != "")
+			if(client.getSociety() != "" && client.getSociety() != null)
 				fillReference(client.getSociety(), "society", client);
 			
-			if(client.getSiret() != "")
+			if(client.getSiret() != "" && client.getSiret() != null)
 				fillReference(client.getSiret(), "siret", client);
 			
-			if(client.getFacebook() != "")
+			if(client.getFacebook() != "" && client.getFacebook() != null)
 				fillReference(client.getFacebook(), "facebook", client);
 			
-			if(client.getTwitter() != "")
+			if(client.getTwitter() != "" && client.getTwitter() != null)
 				fillReference(client.getTwitter(), "twitter", client);
 			
-			if(client.getGooglePlus() != "")
+			if(client.getGooglePlus() != "" && client.getGooglePlus() != null)
 				fillReference(client.getGooglePlus(), "google_plus", client);
 			
-			if(client.getLinkedIn() != "")
+			if(client.getLinkedIn() != "" && client.getLinkedIn() != null)
 				fillReference(client.getLinkedIn(), "linkedin", client);
 			
-			if(client.getViadeo() != "")
+			if(client.getViadeo() != "" && client.getViadeo() != null)
 				fillReference(client.getViadeo(), "viadeo", client);
 			
-			if(client.getWebPerso() != "")
+			if(client.getWebPerso() != "" && client.getWebPerso() != null)
 				fillReference(client.getWebPerso(), "web_perso", client);
 			
-			if(client.getWebPro() != "")
+			if(client.getWebPro() != "" && client.getWebPro() != null)
 				fillReference(client.getWebPro(), "web_pro", client);
 			
-			if(client.getEmail() != "")
+			if(client.getEmail() != "" && client.getEmail() != null)
 				fillReference(client.getEmail(), "email", client);
 			
-		
-		
-		
+				
 		root.appendChild(root_Reference);
 		
 		doc.appendChild(root);
@@ -169,38 +167,48 @@ public class SearchRelation extends JFrame {
 	
 	private void fillReference(String s, String element, Customer client){
 
-		Element ref = doc.createElement(element);
-						
-		
-		
-		ListRef = new ArrayList<String>();
-		
-		ListRef = (ArrayList<String>) GoogleSearch.search(s);
-
-		
-		for (String string : ListRef) {
-			Element url = doc.createElement("url");
-			url.setAttribute("Positive", isPositive(string, client));
-			url.appendChild(doc.createTextNode(string));
-			ref.appendChild(url);
+		if(s != null && s != ""){
+			Element ref = doc.createElement(element);
+							
 			
+			
+			ListRef = new ArrayList<String>();
+			
+			
+			 try {
+				Thread.sleep(1000);
+				ListRef = (ArrayList<String>) GoogleSearch.search(s);
+				Thread.sleep(1000);
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			for (String string : ListRef) {
+				Element url = doc.createElement("url");
+				url.setAttribute("Positive", isPositive(string, client));
+				url.appendChild(doc.createTextNode(string));
+				ref.appendChild(url);
+				
+			}
+			root_Reference.appendChild(ref);
 		}
-		root_Reference.appendChild(ref);
-		
 	}
 	
 	private String isPositive(String url, Customer client){
 		String s = "";
 		
-		if(url.equals(client.getFacebook()) 
-		|| url.equals(client.getTwitter()) 
-		|| url.equals(client.getGooglePlus())  
-		|| url.equals(client.getLinkedIn())
-		|| url.equals(client.getWebPerso())
-		|| url.equals(client.getWebPro())
+		if((client.getFacebook() != null && url.equals(client.getFacebook())) 
+		|| (client.getTwitter() != null && url.equals(client.getTwitter())) 
+		|| (client.getGooglePlus() != null && url.equals(client.getGooglePlus()))  
+		|| (client.getLinkedIn() != null && url.equals(client.getLinkedIn()))
+		|| (client.getWebPerso() != null && url.equals(client.getWebPerso()))
+		|| (client.getWebPro() != null && url.equals(client.getWebPro()))
 		|| GoogleSearch.searchReference(ListUrlClient,url))
+		
 		s = "true";
-					
+				
 		return s;
 		
 	}
@@ -219,7 +227,7 @@ public class SearchRelation extends JFrame {
 	private Customer LoadClient() {
 		
 		String clientName = document.getElementsByTagName("name").item(0).getTextContent();
-		String clientFirstName = document.getElementsByTagName("name").item(0).getTextContent();
+		String clientFirstName = document.getElementsByTagName("first_name").item(0).getTextContent();
 		Customer c = new Customer(clientName,clientFirstName);
 		
 		if(document.getElementsByTagName("pseudo").item(0) != null)

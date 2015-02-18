@@ -57,6 +57,8 @@ public class GoogleSearch {
 				//e.printStackTrace();
 			} catch (IOException e) {
 				//e.printStackTrace();
+			}catch (IllegalArgumentException e){
+				//e.printStackTrace();
 			}
 			
 			return links;

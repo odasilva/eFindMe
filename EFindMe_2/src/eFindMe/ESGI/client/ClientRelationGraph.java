@@ -318,13 +318,13 @@ public class ClientRelationGraph extends JPanel{
 	
 	public void saveXml(String nameFile){
 
-		File fichierXML = new File("src/Graph/"+nameFile + ".xml");
-		//JFileChooser fileChooser = new JFileChooser();
-		//fileChooser.setDialogTitle("Choix de l'emplacement du fichier de sauvegarde");
-		//int userSelection = fileChooser.showSaveDialog(new JFrame());
-		//if(!(userSelection == JFileChooser.APPROVE_OPTION) || fileChooser.getSelectedFile() == null)
-			//return;
-		//File fichierXML = fileChooser.getSelectedFile();
+		//File fichierXML = new File("src/Graph/"+nameFile + ".xml");
+		JFileChooser fileChooser = new JFileChooser("src/Graph/");
+		fileChooser.setDialogTitle("Choix de l'emplacement du fichier de sauvegarde");
+		int userSelection = fileChooser.showSaveDialog(new JFrame());
+		if(!(userSelection == JFileChooser.APPROVE_OPTION) || fileChooser.getSelectedFile() == null)
+			return;
+		File fichierXML = fileChooser.getSelectedFile();
 		BufferedWriter out;
 		try {
 			out = new BufferedWriter(new FileWriter(fichierXML));

@@ -183,7 +183,7 @@ public class RelationManager extends JFrame implements ActionListener{
 	private Customer LoadClient() {
 		
 		String clientName = document.getElementsByTagName("name").item(0).getTextContent();
-		String clientFirstName = document.getElementsByTagName("name").item(0).getTextContent();
+		String clientFirstName = document.getElementsByTagName("first_name").item(0).getTextContent();
 		Customer c = new Customer(clientName,clientFirstName);
 		
 		if(document.getElementsByTagName("pseudo").item(0) != null)

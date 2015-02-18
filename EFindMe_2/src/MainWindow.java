@@ -75,7 +75,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		{ 
 			JFileChooser chooser = new JFileChooser("src/Graph/");
 	        if(chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-	        	new RelationManager(chooser.getSelectedFile().getName());
+	        	new RelationManager("src/Graph/"+chooser.getSelectedFile().getName());
 	        }
 		}
 		

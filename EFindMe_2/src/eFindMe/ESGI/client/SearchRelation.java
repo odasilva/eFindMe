@@ -1,6 +1,5 @@
 package eFindMe.ESGI.client;
 
-import java.awt.List;
 import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +25,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
+
 
 public class SearchRelation extends JFrame {
 	private Customer client;
@@ -118,19 +118,42 @@ public class SearchRelation extends JFrame {
 	
 		fillUrlClient(client);
 		
-		fillReference(client.getSurname()+" "+client.getName(), "name_firstname_reference", client);
-		fillReference(client.getPseudo(), "pseudo", client);
-		fillReference(client.getSociety(), "society", client);
-		fillReference(client.getSiret(), "siret", client);
-		fillReference(client.getFacebook(), "facebook", client);
-		fillReference(client.getTwitter(), "twitter", client);
-		fillReference(client.getGooglePlus(), "google_plus", client);
-		fillReference(client.getLinkedIn(), "linkedin", client);
-		fillReference(client.getViadeo(), "viadeo", client);
-		fillReference(client.getWebPerso(), "web_perso", client);
-		fillReference(client.getWebPro(), "web_pro", client);
-		fillReference(client.getEmail(), "email", client);
+			if(client.getSurname() != null && client.getName()!= null)
+				fillReference(client.getSurname()+" "+client.getName(), "name_firstname_reference", client);
 		
+			if(client.getPseudo() != null)
+				fillReference(client.getPseudo(), "pseudo", client);
+			
+			if(client.getSociety() != null)
+				fillReference(client.getSociety(), "society", client);
+			
+			if(client.getSiret() != null)
+				fillReference(client.getSiret(), "siret", client);
+			
+			if(client.getFacebook() != null)
+				fillReference(client.getFacebook(), "facebook", client);
+			
+			if(client.getTwitter() != null)
+				fillReference(client.getTwitter(), "twitter", client);
+			
+			if(client.getGooglePlus() != null)
+				fillReference(client.getGooglePlus(), "google_plus", client);
+			
+			if(client.getLinkedIn() != null)
+				fillReference(client.getLinkedIn(), "linkedin", client);
+			
+			if(client.getViadeo() != null)
+				fillReference(client.getViadeo(), "viadeo", client);
+			
+			if(client.getWebPerso() != null)
+				fillReference(client.getWebPerso(), "web_perso", client);
+			
+			if(client.getWebPro() != null)
+				fillReference(client.getWebPro(), "web_pro", client);
+			
+			if(client.getEmail() != null)
+				fillReference(client.getEmail(), "email", client);
+			
 		
 		
 		

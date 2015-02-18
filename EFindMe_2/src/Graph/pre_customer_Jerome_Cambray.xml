@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<EfindMe>
+<customer>
+<name>Cambray</name>
+<first_name>Jerome</first_name>
+<pseudo>Igneal</pseudo>
+<society>automotor</society>
+<siret>72980541600066</siret>
+<facebook>http://www.facebook.com/jerome.cambray</facebook>
+<twitter>http://www.twitter.com/nicolas_vilas</twitter>
+<google_plus>https://plus.google.com/115067031471316558375</google_plus>
+<linkedin>https://fr.linkedin.com/pub/jerome-cambray/66/633/563</linkedin>
+<viadeo>http://fr.viadeo.com/fr/profile/carole.cambray</viadeo>
+<web_perso>http://www.automotor-france.com</web_perso>
+<web_pro>http://www.automotor-france.com</web_pro>
+<email>jerome.cambray@gmail.com</email>
+</customer>
+<reference>
+<name_firstname_reference>
+<url positive="">https://www.facebook.com/jeromefreymond</url>
+<url positive="">https://fr-fr.facebook.com/jerome.anrys</url>
+<url positive="">http://en.wikipedia.org/wiki/Cambrai_Homily</url>
+<url positive="">http://openwetware.org/wiki/Endy:Reprints</url>
+</name_firstname_reference>
+<pseudo>
+<url positive="">http://fairytail.wikia.com/wiki/Igneel</url>
+<url positive="">http://en.wiktionary.org/wiki/igneal</url>
+<url positive="">http://www.youtube.com/watch%3Fv%3DGrEksRnQ4Rg</url>
+<url positive="">http://igneal.deviantart.com/</url>
+</pseudo>
+<society/>
+<siret/>
+<facebook/>
+<twitter/>
+<google_plus/>
+<linkedin/>
+<viadeo/>
+<web_perso/>
+<web_pro/>
+<email/>
+</reference>
+</EfindMe>

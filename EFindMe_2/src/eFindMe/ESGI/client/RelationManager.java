@@ -110,16 +110,16 @@ public class RelationManager extends JFrame implements ActionListener{
 			BoxLayout eastPanelLayout = new BoxLayout(eastPanel, BoxLayout.Y_AXIS);
 			eastPanel.setLayout(eastPanelLayout);
 			
-			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			eastPanel.add(Box.createRigidArea(new Dimension(50,50)));
 			sourceLabel = new JLabel("");
 			eastPanel.add(sourceLabel);
-			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			eastPanel.add(Box.createRigidArea(new Dimension(50,50)));
 			linkLabel = new JLabel("");
 			eastPanel.add(linkLabel);
-			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			eastPanel.add(Box.createRigidArea(new Dimension(50,50)));
 			appreciationLabel = new JLabel("");
 			eastPanel.add(appreciationLabel);
-			eastPanel.add(Box.createRigidArea(new Dimension(50,120)));
+			eastPanel.add(Box.createRigidArea(new Dimension(50,50)));
 			
 			JButton btnVerifierLien = new JButton("Vérifier");
 			btnVerifierLien.addActionListener(new ActionListener()

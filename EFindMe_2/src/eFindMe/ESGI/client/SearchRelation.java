@@ -175,19 +175,19 @@ public class SearchRelation extends JFrame {
 			ListRef = new ArrayList<String>();
 			
 			
-			 try {
-				Thread.sleep(1000);
+//			 try {
+//				Thread.sleep(1000);
 				ListRef = (ArrayList<String>) GoogleSearch.search(s);
-				Thread.sleep(1000);
-				
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//				Thread.sleep(1000);
+//				
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 			for (String string : ListRef) {
 				Element url = doc.createElement("url");
-				url.setAttribute("Positive", isPositive(string, client));
+				url.setAttribute("positive", isPositive(string, client));
 				url.appendChild(doc.createTextNode(string));
 				ref.appendChild(url);
 				

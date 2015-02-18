@@ -33,22 +33,24 @@ public class GoogleSearch {
 				url = new URL(GOOGLE + URLEncoder.encode(s, CHARSET));
 				 Reader reader = new InputStreamReader(url.openStream(), CHARSET);
 				    GoogleResults results = new Gson().fromJson(reader, GoogleResults.class);
+				    
 				    System.out.println("___"+s);
-				    if(results.getResponseData().getResults().size() > 10)
-				    {
-				    	for(int i = 0 ; i < 10; i++)
+				    if(results != null && results.getResponseData() != null && results.getResponseData().getResults() != null){
+					    if(results.getResponseData().getResults().size() > 10)
 					    {
-					    	 links.add(results.getResponseData().getResults().get(i).getUrl());
-					    }
-				    }
-				    else
-				    {
-				    	 for(int i = 0 ; i < results.getResponseData().getResults().size(); i++)
+					    	for(int i = 0 ; i < 10; i++)
 						    {
 						    	 links.add(results.getResponseData().getResults().get(i).getUrl());
 						    }
+					    }
+					    else
+					    {
+					    	 for(int i = 0 ; i < results.getResponseData().getResults().size(); i++)
+							    {
+							    	 links.add(results.getResponseData().getResults().get(i).getUrl());
+							    }
+					    }
 				    }
-				    
 				   
 				    
 				    

@@ -118,40 +118,40 @@ public class SearchRelation extends JFrame {
 	
 		fillUrlClient(client);
 		
-			if(client.getSurname() != null && client.getName()!= null)
+			if(client.getSurname() != "" && client.getName()!= "")
 				fillReference(client.getSurname()+" "+client.getName(), "name_firstname_reference", client);
 		
-			if(client.getPseudo() != null)
+			if(client.getPseudo() != "")
 				fillReference(client.getPseudo(), "pseudo", client);
 			
-			if(client.getSociety() != null)
+			if(client.getSociety() != "")
 				fillReference(client.getSociety(), "society", client);
 			
-			if(client.getSiret() != null)
+			if(client.getSiret() != "")
 				fillReference(client.getSiret(), "siret", client);
 			
-			if(client.getFacebook() != null)
+			if(client.getFacebook() != "")
 				fillReference(client.getFacebook(), "facebook", client);
 			
-			if(client.getTwitter() != null)
+			if(client.getTwitter() != "")
 				fillReference(client.getTwitter(), "twitter", client);
 			
-			if(client.getGooglePlus() != null)
+			if(client.getGooglePlus() != "")
 				fillReference(client.getGooglePlus(), "google_plus", client);
 			
-			if(client.getLinkedIn() != null)
+			if(client.getLinkedIn() != "")
 				fillReference(client.getLinkedIn(), "linkedin", client);
 			
-			if(client.getViadeo() != null)
+			if(client.getViadeo() != "")
 				fillReference(client.getViadeo(), "viadeo", client);
 			
-			if(client.getWebPerso() != null)
+			if(client.getWebPerso() != "")
 				fillReference(client.getWebPerso(), "web_perso", client);
 			
-			if(client.getWebPro() != null)
+			if(client.getWebPro() != "")
 				fillReference(client.getWebPro(), "web_pro", client);
 			
-			if(client.getEmail() != null)
+			if(client.getEmail() != "")
 				fillReference(client.getEmail(), "email", client);
 			
 		
@@ -160,6 +160,7 @@ public class SearchRelation extends JFrame {
 		root.appendChild(root_Reference);
 		
 		doc.appendChild(root);
+
 		saveXml("customer_"+client.getSurname()+"_"+client.getName()+".xml");
 		
 		

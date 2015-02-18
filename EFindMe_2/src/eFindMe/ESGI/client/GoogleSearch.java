@@ -33,7 +33,7 @@ public class GoogleSearch {
 				url = new URL(GOOGLE + URLEncoder.encode(s, CHARSET));
 				 Reader reader = new InputStreamReader(url.openStream(), CHARSET);
 				    GoogleResults results = new Gson().fromJson(reader, GoogleResults.class);
-				    
+				    System.out.println("___"+s);
 				    if(results.getResponseData().getResults().size() > 10)
 				    {
 				    	for(int i = 0 ; i < 10; i++)
@@ -54,9 +54,9 @@ public class GoogleSearch {
 				    
 				    return links;
 			} catch (MalformedURLException | UnsupportedEncodingException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			
 			return links;

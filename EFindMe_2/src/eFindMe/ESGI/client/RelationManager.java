@@ -171,7 +171,7 @@ public class RelationManager extends JFrame implements ActionListener{
 			setTitle("eFindMe - " + client.getSociety());
 			setExtendedState( getExtendedState()|JFrame.MAXIMIZED_BOTH );
 			setVisible(true);
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
